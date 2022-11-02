@@ -1,30 +1,38 @@
 package com.aqua.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 
 public class LoginPage {
-
-    // <input name="user_name" type="text" value="">
-    private By usernameBy = By.xpath("//input[@id='UserName']");
-    // <input name="password" type="password" value="">
-    private By passwordBy = By.xpath("//input[@id='Password']");
-    // <input name="sign_in" type="submit" value="SignIn">
-    private By signinBy = By.xpath("//button[@id='submitButton']");
-
-
     WebDriver driver;
+
+    //Deklarierung der benötigten WebElemente
+   @FindBy (xpath="//input[@id='UserName']") public WebElement username;
+
+   @FindBy (xpath="//input[@id='Password']") public WebElement passWord;
+
+   @FindBy (xpath="//button[@id='submitButton']") public WebElement signin;
+
+
+
+
     public LoginPage(WebDriver driver)
+
     {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
-
 
     public void loginValidUser(String userName, String password)
     {
-        driver.findElement(usernameBy).sendKeys(userName);
-        driver.findElement(passwordBy).sendKeys(password);
-        driver.findElement(signinBy).click();
+
+        username.sendKeys(userName);
+        passWord.sendKeys(password);
+        signin.click();
 
     }
+
 }

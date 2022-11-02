@@ -7,13 +7,13 @@ import org.openqa.selenium.WebDriver;
  * Page Object encapsulates the Home Page
  */
 
-
-
 public class HomePage
 {
     WebDriver driver;
     //Deklarierung der Menüleiste, nur "Navigation interessiert uns"
     private By NavigationBy = By.id("mainNavigationBar_Navigation");
+    private By OptionsBy = By.xpath("//div[@class='aq-user-picture has-picture']");
+    private By LogoutBy = By.xpath("//li[contains(text(),'Logout')]");
 
     public HomePage(WebDriver driver)
     {
