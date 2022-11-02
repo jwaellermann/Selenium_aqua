@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,38 +17,38 @@ import java.time.Duration;
 
 
 
-public class LoginTest
+public class FireFoxTest
 {
-    WebDriver driver;
-   LoginPage login;
+    WebDriver gDriver;
+    LoginPage login;
 
     @BeforeEach
     public void SetUp()
     {
         //ChromeDriver definiert
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\JohannesWällermann\\Desktop\\SeleniumDriver\\chromedriver.exe");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver","C:\\Users\\JohannesWällermann\\Desktop\\SeleniumDriver\\geckodriver.exe");
+        gDriver = new FirefoxDriver();
         //Browserfenster Maximieren
-        driver.manage().window().maximize();
+        gDriver.manage().window().maximize();
         //aqua-LoginPage
         String sBaseUrl = "https://aqua-saas2.andagon.com/aquaWebNG/Account/Login?returnUrl=/aquawebng";
-        driver.get(sBaseUrl);
+        gDriver.get(sBaseUrl);
 
-         }
+    }
 
-   @Test
-    public void Login()
+    @Test
+    public void LoginFirefox()
     {
-        login = new LoginPage(driver);
+        login = new LoginPage(gDriver);
 
         //Login mit Standard-Wert
         login.loginValidUser("testuser1@andagon", "Start#123");
 
 
         //Assertion
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(gDriver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Navigation')]")));
-        WebElement Title = driver.findElement(By.xpath("//input[@class='title']"));
+        WebElement Title = gDriver.findElement(By.xpath("//input[@class='title']"));
         Assertions.assertTrue(Title.isDisplayed());
 
 
@@ -57,7 +57,7 @@ public class LoginTest
     @AfterEach
     public void tearDown()
     {
-        driver.quit();
+        gDriver.quit();
     }
 
 

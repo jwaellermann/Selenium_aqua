@@ -32,14 +32,9 @@ public class HomePageNavigation
 
         LoginPage login = new LoginPage(driver);
 
-        //Login mit parametrisierten Werten
+        //Login mit Standard-Wert
         login.loginValidUser("testuser1@andagon", "Start#123");
 
-        //Assertion
-       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-       // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Navigation')]")));
-       // WebElement Title = driver.findElement(By.xpath("//input[@class='title']"));
-       // Assertions.assertTrue(Title.isDisplayed());
 
     }
 
